@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 
 	import { getContextLayout } from 'utils-layout';
-	import { resizeObserver, type ContentRect } from 'utils-resize-observer';
+	type ContentRect = { width: number; height: number; left: number; top: number };
 
 	import BaseContent from './BaseContent.svelte';
 	import BaseScrollable from './BaseScrollable.svelte';
@@ -22,13 +22,13 @@
 
 	const verticalScale = $derived(stateLayoutDerived.canvasSizes().height / (270 * 2)); // 2 rows, 270 is the height benchmark
 	const horizontalScale = $derived(
-		(stateLayoutDerived.canvasSizes().width - 250) / (contentRect?.width || 0),
+		(stateLayoutDerived.canvasSizes().width - 250) / (contentRect?.width || 1),
 	);
 	const scale = $derived(Math.min(verticalScale, horizontalScale));
 </script>
 
 <BaseContent maxWidth="100%">
-	<div class="bonuses-wrap" use:resizeObserver={(value) => (contentRect = value)}>
+	<div class="bonuses-wrap" >
 		<div class="bonuses" style="transform: scale({Math.min(scale, 1)});">
 			<BaseScrollable type="row" noScroll>
 				{@render props.bonusCardsActivate()}

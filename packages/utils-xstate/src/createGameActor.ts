@@ -35,6 +35,12 @@ const stateIdle = {
 		AUTO_BET: {
 			target: 'autoBet',
 		},
+		SHOW_PAYTABLE: {
+			target: 'paytable',
+		},
+		SHOW_INFO: {
+			target: 'info',
+		},
 	},
 };
 
@@ -70,6 +76,22 @@ const stateAutoBet = {
 	},
 };
 
+const statePaytable = {
+	on: {
+		CLOSE_PAYTABLE: {
+			target: 'idle',
+		},
+	},
+};
+
+const stateInfo = {
+	on: {
+		CLOSE_INFO: {
+			target: 'idle',
+		},
+	},
+};
+
 const createGameActor = (intermediateMachines: IntermediateMachines) => {
 	// machine
 	const gameMachine = setup({
@@ -92,6 +114,8 @@ const createGameActor = (intermediateMachines: IntermediateMachines) => {
 			[STATE_AUTOBET]: stateAutoBet,
 			[STATE_RESUME_BET]: stateResumeBet,
 			[STATE_FORCE_RESULT]: stateForceResult,
+			[STATE_PAYTABLE]: statePaytable,
+			[STATE_INFO]: stateInfo,
 		},
 	});
 

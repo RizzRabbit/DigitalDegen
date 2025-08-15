@@ -8,6 +8,7 @@ let dev = NODE_ENV === 'development';
 
 export default () =>
 	defineConfig({
+		envPrefix: 'PUBLIC_',
 		plugins: [sveltekit(), lingui()],
 		logLevel: 'info',
 		build: {

@@ -32,7 +32,6 @@
 		"utils-shared": "workspace:*",
 		"utils-layout": "workspace:*",
 		"utils-event-emitter": "workspace:*",
-		"utils-resize-observer": "workspace:*",
 		"state-shared": "workspace:*",
 		"constants-shared": "workspace:*",
 		"components-shared": "workspace:*",

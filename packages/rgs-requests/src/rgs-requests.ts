@@ -1,5 +1,20 @@
 import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
-import { rgsFetcher } from 'rgs-fetcher';
+const rgsFetcher = {
+    post: async (options: { rgsUrl: string; url: string; variables: any }) => {
+        const queryParams = new URLSearchParams(options.variables).toString();
+        const url = `${options.rgsUrl}${options.url}?${queryParams}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    },
+};
 
 export * from './types';
 
